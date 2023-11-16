@@ -1,0 +1,58 @@
+extends layout
+
+block content
+  h1= title
+
+  - let icecreamid = toShow._id
+  - let icecream_type = toShow.icecream_type
+  - let icecream_size = toShow.size
+  - let icecream_cost = toShow.cost
+
+  div.container
+    div.row.mb-2
+      div.col-12
+        div.card
+          div.card-body
+            h5.card-title Ice Cream Details
+
+            div.row
+              div.col-md-6
+                div.mr-1 ID is
+                div #{icecreamid}
+
+              div.col-md-6
+                form(id='icecreamForm', action='/resource/icecream/' + icecreamid, method='PUT')
+                  div.form-group
+                    label.icecreamAttr(for='icecream_type') Ice Cream Type
+                    input#icecream_type.form-control(type='text', name='icecream_type', value=icecream_type)
+
+                  div.form-group
+                    label.icecreamAttr(for='size') Ice Cream Size
+                    input#size.form-control(type='text', name='size', value=icecream_size)
+
+                  div.form-group
+                    label.icecreamAttr(for='cost') Ice Cream Cost
+                    input#cost.form-control(type='number', name='cost', value=icecream_cost)
+
+                  input.btn.btn-primary(type='submit', value='Update')
+
+                script.
+                  document.forms['icecreamForm'].addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    // TODO: do something here to show the user that the form is being submitted
+                    fetch(event.target.action, {
+                      method: 'PUT',
+                      body: new URLSearchParams(new FormData(event.target)), // event.target is the form
+                    })
+                    .then((resp) => {
+                      return resp.json(); // or resp.text() or whatever the server sends
+                    })
+                    .then((body) => {
+                      alert("Update succeeded");
+                      // TODO: handle body
+                    })
+                    .catch((error) => {
+                      // TODO: handle error
+                      alert("Update failed: " + error);
+                    });
+                  });

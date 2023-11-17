@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
   -
-    let results = [
+    let icecreams = [
       {
         "icecream_flavour": "Chocolate",
         "icecream_quantity": "100 items",
@@ -22,14 +22,13 @@ block content
     ]
   div(class= "container-fluid")
     div(class = "row")
-      each item,index in results
-        div(class= "col-sm-2", onclick=`buy(${index})`) Flavour: #{item.icecream_flavour}
-        div(class= "col-sm-2", onclick=`buy(${index})`) Quantity: #{item.icecream_quantity}
-        div(class= "col-sm-2", onclick=`buy(${index})`) Cost: #{item.icecream_cost}
-        br
-        br
-        
-  script.
-    function buy(itemNum){
-      alert(`You purchased item ${itemNum+1}`)
-    }
+     each item in results
+        - let destination = `dispatch(\"/icecream/update?id=${item._id}\")`
+          div(class="col-sm-2" onclick =`buy(${index})`) #{item.icecream_flavour},  #{item.icecream_quantity},  #{item.icecream_cost}
+            button.btn( class="btn-primary ml-1", onclick= destination) Update 
+          script.
+            function dispatch(path){
+              window.location.href=path
+            }
+
+

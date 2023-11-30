@@ -6,17 +6,17 @@ block content
     let icecreams = [
       {
         "icecream_flavour": "Chocolate",
-        "icecream_quantity": "100 items",
+        "icecream_quantity": "5",
         "icecream_cost": 1000
       },
       {
         "icecream_flavour": "BlackCurrent",
-        "icecream_quantity": "5 items",
+        "icecream_quantity": "10",
         "icecream_cost": 500
       },
       {
         "icecream_flavour": "Butterschotch",
-        "icecream_quantity": "10 items",
+        "icecream_quantity": "20",
         "icecream_cost": 100
       },                   
     ]
@@ -24,8 +24,12 @@ block content
     div(class = "row")
      each item in results
         - let destination = `dispatch(\"/icecream/update?id=${item._id}\")`
+        - let detail = `dispatch(\"/icecream/detail/?id=${item._id}")`
+        - let deleteiceceream = `dispatch(\"/icecream/delete/?id=${item._id}")`
           div(class="col-sm-2" onclick =`buy(${index})`) #{item.icecream_flavour},  #{item.icecream_quantity},  #{item.icecream_cost}
             button.btn( class="btn-primary ml-1", onclick= destination) Update 
+            button.btn( class="btn-success", onclick= detail) Details
+            button.btn( class="btn-dark", onclick= deleteiceceream) Delete
           script.
             function dispatch(path){
               window.location.href=path

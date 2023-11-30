@@ -8,26 +8,16 @@ block content
   - let icecream_quantity  = toShow.icecream_quantity
   - let icecream_cost = toShow.icecream_cost
 
-  div.container
-    div.row.mb-2
-      div.col-12
-        div.card
-          div.card-body
-            h5.card-title Ice Cream Details
-
-            div.row
-              div.col-md-3
-                div.icecreamAttr.mb-3 Ice Cream ID:
-                div #{icecreamid}
-
-              div.col-md-3
-                div.icecreamAttr.mb-3 Ice Cream Flavour:
-                div #{icecream_flavour}
-
-              div.col-md-3
-                div.icecreamAttr.mb-3 Ice Cream Quantity:
-                div #{icecream_quantity}
-
-              div.col-md-3
-                div.icecreamAttr.mb-3 Ice Cream Cost:
-                div #{icecream_cost}
+  div
+      div.row
+        div(class='icecreamAttr mr-3') IceCream ID is:
+          div #{icecreamid}
+      div.row
+        div(class='icecreamAttr mr-3') IceCream Flavour is:
+          div #{icecream_flavour}
+      div.row
+        div(class='icecreamAttr mr-3') Icecream Quantiy  is:
+          div #{icecream_quantity}
+      div.row
+        div(class='icecreamAttr mr-3') IceCream Cost is:
+          div #{icecream_cost}
